@@ -1,0 +1,9 @@
+192.168.1.50 - - [12/Sep/2026:10:00:01 +0200] "GET /index.html HTTP/1.1" 200 4523
+192.168.1.50 - - [12/Sep/2026:10:00:05 +0200] "GET /about HTTP/1.1" 200 2310
+10.0.0.15 - - [12/Sep/2026:10:01:12 +0200] "GET /wp-login.php HTTP/1.1" 404 180
+10.0.0.15 - - [12/Sep/2026:10:01:13 +0200] "GET /admin/phpmyadmin/index.php HTTP/1.1" 404 180
+10.0.0.15 - - [12/Sep/2026:10:01:14 +0200] "GET /.env HTTP/1.1" 404 180
+10.0.0.15 - - [12/Sep/2026:10:01:15 +0200] "GET /.git/config HTTP/1.1" 404 180
+172.16.0.99 - - [12/Sep/2026:10:05:22 +0200] "GET /products.php?id=1%20UNION%20SELECT%20null,username,password%20FROM%20users HTTP/1.1" 200 560
+203.0.113.8 - - [12/Sep/2026:10:06:01 +0200] "GET /download.php?file=../../../../etc/passwd HTTP/1.1" 403 210
+203.0.113.8 - - [12/Sep/2026:10:06:30 +0200] "GET /search?q=<script>alert('xss')</script> HTTP/1.1" 200 3200
