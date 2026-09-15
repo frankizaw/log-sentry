@@ -10,7 +10,7 @@ from collections import Counter
 
 SUSPICIOUS_PATTERNS = {
     "Directory Traversal": [r"\.\./", r"\.\.\\", r"/etc/passwd", r"/win\.ini"],
-    "SQL Injection": [r"union.*select", r"select.*from", r"'\s*or\s*'?1'?='?1", r"exec\(", r"--"],
+    "SQL Injection": [r"union.*select", r"select.*from", r"'\s*or\s*'?1'?='?1", r"exec\(", r"['\")]\s*--"],
     "Sensitive Files / Recon": [r"\.env", r"\.git", r"wp-config", r"wp-login", r"phpmyadmin"],
     "Cross-Site Scripting (XSS)": [r"<script.*?>", r"javascript:", r"alert\(", r"onerror="]
 }
