@@ -1,21 +1,36 @@
-# Web Access Log Analyzer
+# Log Sentry
 
-A lightweight Python script for parsing web server access logs (Nginx / Apache Combined Format) to identify common attack signatures and scanning activity.
+A small Python script that scans web server access logs and flags requests that look like common attacks.
 
-Created as a practical exercise in log parsing, regular expressions, and basic intrusion detection principles.
+I built this to practice log parsing, regular expressions, and basic security concepts while learning Python and cybersecurity.
 
-## Overview
-The script reads access log files line-by-line using standard Python libraries, parses request metadata, and performs signature matching against common malicious URI patterns.
+*Czytaj po polsku: [README.pl.md](README.pl.md)*
 
-### Current Features
-- **Signature Detection:** Flags basic indicators of:
-  - Directory Traversal (`../`, `/etc/passwd`)
-  - SQL Injection (basic boolean and union payloads)
-  - Reconnaissance on common sensitive paths (`.env`, `.git`, admin endpoints)
-  - Basic Cross-Site Scripting (XSS) script tags
-- **Scanning Frequency Analysis:** Aggregates HTTP `404 Not Found` responses per IP address to surface brute-force path enumeration.
-- **Zero External Dependencies:** Relies purely on the Python standard library (`sys`, `re`, `collections`).
+## What it does
+
+- Reads an Nginx/Apache access log file line by line.
+- Checks each request path against a list of patterns for:
+  - Directory traversal (`../`, `/etc/passwd`)
+  - SQL injection (basic `UNION SELECT`, `OR 1=1` style payloads)
+  - Requests probing for sensitive files (`.env`, `.git`, admin login pages)
+  - Basic XSS (`<script>` tags)
+- Counts how many `404 Not Found` responses each IP address gets, to spot IPs scanning for pages that don't exist.
+- Prints a short report at the end.
+
+No external libraries — just Python's standard library (`sys`, `re`, `collections`).
 
 ## Usage
+
 ```bash
 python3 analyzer.py <path_to_log_file>
+```
+
+Example:
+
+```bash
+python3 analyzer.py sample_access.log
+```
+
+## Status
+
+This is a learning project, not a production security tool. Detection is based on simple pattern matching and can be fooled — it's a starting point for understanding how basic intrusion detection works, not a replacement for a real WAF/IDS.
